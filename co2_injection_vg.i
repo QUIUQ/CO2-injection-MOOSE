@@ -64,7 +64,7 @@
         type = PorousFlowCapillaryPressureVG
         alpha = 1e-5
         m = 0.5
-        sat_lr = 0.3
+        sat_lr = 0.2
     []
     [pc0]
         type = PorousFlowCapillaryPressureConst
