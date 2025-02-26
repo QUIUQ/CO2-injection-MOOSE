@@ -260,6 +260,8 @@
     [watertab]
         type = TabulatedBicubicFluidProperties
         fp = water
+        out_of_bounds_behavior = ignore
+
     []
     [brine]
         type = BrineFluidProperties
@@ -271,6 +273,7 @@
     [co2]
         type = TabulatedBicubicFluidProperties
         fp = co2sw
+        out_of_bounds_behavior = set_to_closest_bound
     []
 
 []
@@ -315,13 +318,18 @@
 []
 
 [Preconditioning]
-    [andy]
-      type = SMP
-      full = true
-      petsc_options_iname = '-pc_type -pc_factor_mat_solver_package '
-      petsc_options_value = 'lu mumps '
-    []
+  active = preferred_but_might_not_be_installed
+  [basic]
+    type = SMP
+    full = true
   []
+  [preferred_but_might_not_be_installed]
+    type = SMP
+    full = true
+    petsc_options_iname = '-pc_type -pc_factor_mat_solver_package'
+    petsc_options_value = ' lu       mumps'
+  []
+[]
 
   [Executioner]
     type = Transient
